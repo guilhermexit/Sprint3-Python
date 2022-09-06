@@ -1,4 +1,5 @@
 from time import sleep
+from tokenize import String
 
 
 #Função pra definir o menu principal
@@ -64,7 +65,7 @@ def cadastroCandidato():   #Função para cadastrar candidatos
             confirm_pwd_cand = input("Confirme sua senha: ")
             if pwd_cand == confirm_pwd_cand:
                 sleep(1)
-                print("Sua conta corporativa foi criada com sucesso!")
+                print("Sua conta foi criada com sucesso!")
                 sleep(1)
                 break
             else:
@@ -79,11 +80,16 @@ def loginEmpresa():  #Função efetuar o login de empresas
     sleep(1)
     while True:
         login_emp = input("Digite o email cadastrado: ")
-        if login_emp != emp_contas[1]:
+        if len(emp_contas) == 0:
             print("Não foi encontrado nenhum cadastro deste e-mail.")
+            sleep(1)
+            break
+        elif login_emp != emp_contas[1]:
+            print("Não foi encontrado nenhum cadastro deste e-mail.")
+            break
         else:
             break
-    while True:
+    while len(emp_contas) != 0:
         pwd_login_emp = input("Digite a senha: ")
         if pwd_login_emp != emp_contas[2]:
             print("Senha incorreta!")
@@ -99,15 +105,21 @@ def loginCandidato():  #Função efetuar o login de candidatos
     sleep(1)
     while True:
         login_cand = input("Digite o email cadastrado: ")
-        if login_cand != cand_contas[1]:
+        if len(cand_contas) == 0:
             print("Não foi encontrado nenhum cadastro deste e-mail.")
+            sleep(1)
+            break
+        elif login_cand != cand_contas[1]:
+            print("Não foi encontrado nenhum cadastro deste e-mail.")
+            break
         else:
             break
-    while True:
+    while len(cand_contas) != 0:
         pwd_login_cand = input("Digite a senha: ")
         if pwd_login_cand != cand_contas[2]:
             print("Senha incorreta!")
             sleep(1)
+            break
         else:
             print("Login efetuado com sucesso.")
             sleep(1)
@@ -117,23 +129,41 @@ def redefinirSenha(): #Função redefinir senha
     print("="*50)
     print("OPÇÃO 'REDEFINIR SENHA' FOI SELECIONADA")
     sleep(1)
-    diff = input("Digite o email registrado: ")
-    if diff == emp_contas[1]:
-        print("Enviamos uma confirmação em seu e-mail, verifique para poder alterar a senha.")
-        sleep(5)
-        pwd_login_emp = input("Altere sua senha: ")
-        print("Sua senha foi alterada com sucesso.")
-        sleep(2)
-    elif diff == cand_contas[1]:
-        print("Enviamos uma confirmação em seu e-mail, verifique para poder alterar a senha.")
-        sleep(5)
-        pwd_login_cand = input("Altere sua senha: ")
-        print("Sua senha foi alterada com sucesso.")
-        sleep(2)
-    else: 
-        print("Nenhum e-mail registrado neste nome foi encontrado.")
-        sleep(1)
+    while True: 
+        redefinir_opc = input("Sua conta é de empresa ou candidato? ")
+        if redefinir_opc == 'candidato' and len(cand_contas) != 0: 
+            diff_cand = input("Digite o email registrado: ")
+            if diff_cand == cand_contas[1]:
+                print("Enviamos uma confirmação em seu e-mail, verifique para poder alterar a senha.")
+                sleep(5)
+                pwd_login_cand = input("Altere sua senha: ")
+                print("Sua senha foi alterada com sucesso.")
+                sleep(2)
+                break
+        elif redefinir_opc == 'empresa' and len(emp_contas) != 0: 
+            diff_emp = input("Digite o email registrado: ")
+            if diff_emp == emp_contas[1]:
+                print("Enviamos uma confirmação em seu e-mail, verifique para poder alterar a senha.")
+                sleep(5)
+                pwd_login_emp = input("Altere sua senha: ")
+                print("Sua senha foi alterada com sucesso.")
+                sleep(2)
+                break
 
+        elif len(cand_contas) == 0:
+            print("Nenhum e-mail registrado neste nome foi encontrado.")
+            sleep(1)
+            break
+
+        elif len(emp_contas) == 0:
+            print("Nenhum e-mail registrado neste nome foi encontrado.")
+            sleep(1)
+            break
+        else:
+            print("Escolha uma opção válida.")
+            sleep(1)
+
+        
 def principal():  #Função principal, que abriga todas as outras
     while True:
         opc = menu()
@@ -152,12 +182,16 @@ def principal():  #Função principal, que abriga todas as outras
         
         if opc == 3:
             redefinirSenha()
-
+            
         if opc == 4:
             print("="*50)
             print("Obrigado por utilizar nosso menu! Volte sempre!")
             sleep(3)
             break
+        if opc >= 5 and String:
+            print("="*50)
+            print("Selecione uma opção válida!")
+            sleep(2)
       
 principal()  #Chamando a função principal
             
