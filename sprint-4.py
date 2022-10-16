@@ -171,13 +171,13 @@ def opcEscolhida():
     while True:
             opc = menu()
             if opc == 1:
-                opCadastro = input("Deseja cadastrar-se como candidato ou empresa?: ") 
+                opCadastro = input("Deseja cadastrar-se como candidato ou empresa?: ").lower()
                 if opCadastro == 'candidato':
                     cadastroCandidato(cand_contas)
                 elif opCadastro =='empresa':
                     cadastroEmpresa(emp_contas)
             if opc == 2:
-                opLogin = input("Deseja entrar como candidato ou empresa?: ")
+                opLogin = input("Deseja entrar como candidato ou empresa?: ").lower()
                 if opLogin == 'candidato':
                     loginCandidato(cand_contas)
                 elif opLogin == 'empresa':
