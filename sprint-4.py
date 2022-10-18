@@ -1,6 +1,4 @@
 from time import sleep
-from tokenize import String
-
 
 #Função pra definir o menu principal
 def menu(): 
@@ -191,7 +189,7 @@ def opcEscolhida():
                 print("Obrigado por utilizar nosso menu! Volte sempre!")
                 sleep(3)
                 break
-            if opc >= 5 and String:
+            if opc >= 5:
                 print("="*50)
                 print("Selecione uma opção válida!")
                 sleep(2)
