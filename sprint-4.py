@@ -10,6 +10,10 @@ def menu():
 
 
 
+
+
+
+
 def cadastroEmpresa(emp_contas):   #Função para cadastrar empresas
     print("="*50)
     print("OPÇÃO 'CADASTRAR EMPRESA' FOI SELECIONADA")
